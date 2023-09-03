@@ -6,22 +6,17 @@
         "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
         "@redux-devtools/extension": "^3.2.5",
         "@reduxjs/toolkit": "^1.9.5",
-        "@svgr/webpack": "^8.1.0",
         "@testing-library/jest-dom": "^5.17.0",
         "@testing-library/react": "^13.4.0",
         "@testing-library/user-event": "^13.5.0",
-        "axios": "^1.5.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "react-redux": "^8.1.2",
         "react-router-dom": "^6.15.0",
-        "react-scripts": "^5.0.1",
+        "react-scripts": "5.0.1",
         "redux": "^4.2.1",
+        "axios": "^0.19.2",
         "web-vitals": "^2.1.4",
-        "@jridgewell/sourcemap-codec": "^1.4.15",
-        "@rollup/plugin-terser": "^0.4.3",
-        "svgo": "^3.0.2",
-        "workbox-cacheable-response": "^7.0.0",
         "sass": "^1.63.6"
     },
     "scripts": {
@@ -47,8 +42,5 @@
             "last 1 firefox version",
             "last 1 safari version"
         ]
-    },
-    "devDependencies": {
-        "web-vitals": "^3.3.2"
     }
 }
