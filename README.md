@@ -13,7 +13,7 @@ In the project directory, you can run:
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-To learn more about how the API works, once you have started your local environment, you can visit: (http://localhost:3001/api-docs)
+To learn more about how the API works, once you have started your local environment, you can visit: (http://localhost:3001/api-docs).
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 

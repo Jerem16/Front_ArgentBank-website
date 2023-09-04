@@ -1,24 +1,26 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser } from "../../redux/actions/authActions";
+import { useNavigate } from "react-router-dom";
 
 import "./loginForm.scss";
 
 function LoginForm() {
-    // Définir des états pour stocker les données utilisateur
-    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [rememberMe, setRememberMe] = useState(false);
 
-    // Fonction pour gérer la soumission du formulaire
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    // const authState = useSelector((state) => state.auth);
+
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        // Vous pouvez utiliser les données utilisateur (username, password et rememberMe) ici
-        console.log("Username:", username);
+        console.log("Email:", email);
         console.log("Password:", password);
         console.log("Remember Me:", rememberMe);
 
-        // Vous pouvez envoyer les données à votre backend pour l'authentification ici
+        dispatch(loginUser(email, password, navigate));
     };
 
     return (
@@ -27,12 +29,12 @@ function LoginForm() {
             <h1>Sign In</h1>
             <form onSubmit={handleSubmit}>
                 <div className="input-wrapper">
-                    <label htmlFor="username">Username</label>
+                    <label htmlFor="email">Email</label>
                     <input
-                        type="text"
-                        id="username"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
+                        type="email"
+                        id="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                     />
                 </div>
                 <div className="input-wrapper">
@@ -54,12 +56,9 @@ function LoginForm() {
                     <label htmlFor="remember-me">Remember me</label>
                 </div>
 
-                <Link to="/user" type="submit" className="sign-in-button">
+                <button type="submit" className="sign-in-button">
                     Sign In
-                </Link>
-                {/* <button type="submit" className="sign-in-button">
-                    Sign In
-                </button> */}
+                </button>
             </form>
         </section>
     );
