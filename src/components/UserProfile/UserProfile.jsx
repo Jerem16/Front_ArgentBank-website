@@ -35,7 +35,7 @@ function UserProfile() {
                         <br />
                         {userData && (
                             <>
-                                {userData.firstName} {userData.lastName}
+                                {userData.firstName} {userData.lastName} !
                             </>
                         )}
                     </h1>

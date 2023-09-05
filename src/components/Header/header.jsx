@@ -26,7 +26,7 @@ function Header() {
                 <div>
                     {userData && userData.userName ? (
                         <>
-                            <Link to="/login" className="main-nav-item">
+                            <Link to="/user" className="main-nav-item">
                                 <i className="fa fa-user-circle"></i>{" "}
                                 {userData.userName}
                             </Link>
