@@ -1,15 +1,35 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
+import { updateProfile } from "../../redux/actions/authActions";
 
 import "./editForm.scss";
 
-function EditForm() {
+function EditForm({ onClose }) {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const token = useSelector((state) => state.user.token);
+
     const userName = useSelector((state) => state.user.userData.userName);
     const firstName = useSelector((state) => state.user.userData.firstName);
     const lastName = useSelector((state) => state.user.userData.lastName);
 
     const [newUserName, setnewUserName] = useState("");
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const updatedUserData = { userName: newUserName };
+        await dispatch(updateProfile(token, updatedUserData));
+        await navigate("/user");
+        onClose();
+    };
+    const cancel = (e) => {
+        e.preventDefault();
+        onClose();
+    };
+    console.log("newUserName", newUserName);
     return (
         <div>
             <h1>
@@ -47,10 +67,18 @@ function EditForm() {
                     />
                 </div>
                 <div className="wrapper-button buttons">
-                    <button type="submit" className="edit-button">
+                    <button
+                        type="submit"
+                        className="edit-button"
+                        onClick={handleSubmit}
+                    >
                         Save
                     </button>
-                    <button type="submit" className="edit-button">
+                    <button
+                        type="submit"
+                        className="edit-button"
+                        onClick={cancel}
+                    >
                         Cancel
                     </button>
                 </div>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { loginUser } from "../../redux/actions/authActions";
 import { useNavigate } from "react-router-dom";
 
@@ -14,13 +14,20 @@ function LoginForm() {
     const navigate = useNavigate();
     // const authState = useSelector((state) => state.auth);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        if (!email || !password) {
+            // Gérer la validation des champs
+            alert("Veuillez remplir tous les champs.");
+            return;
+        }
+
         console.log("Email:", email);
         console.log("Password:", password);
         console.log("Remember Me:", rememberMe);
 
-        dispatch(loginUser(email, password, navigate));
+        await dispatch(loginUser(email, password, navigate));
+        await navigate("/user");
     };
 
     return (

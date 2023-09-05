@@ -19,38 +19,34 @@ function Header() {
         navigate("/");
     };
 
-    if (userData && userData.userName) {
-        return (
-            <header>
-                <nav className="main-nav">
-                    <LogoLink />
-                    <div>
-                        <Link to="/login" className="main-nav-item">
-                            <i className="fa fa-user-circle"></i>{" "}
-                            {userData.userName}
-                        </Link>
-                        <Link className="main-nav-item" onClick={handleSignOut}>
-                            <i className="fa fa-sign-out"></i>
-                            Sign Out
-                        </Link>
-                    </div>
-                </nav>
-            </header>
-        );
-    } else {
-        return (
-            <header>
-                <nav className="main-nav">
-                    <LogoLink />
-                    <div>
+    return (
+        <header>
+            <nav className="main-nav">
+                <LogoLink />
+                <div>
+                    {userData && userData.userName ? (
+                        <>
+                            <Link to="/login" className="main-nav-item">
+                                <i className="fa fa-user-circle"></i>{" "}
+                                {userData.userName}
+                            </Link>
+                            <Link
+                                className="main-nav-item"
+                                onClick={handleSignOut}
+                            >
+                                <i className="fa fa-sign-out"></i>
+                                Sign Out
+                            </Link>
+                        </>
+                    ) : (
                         <Link to="/login" className="main-nav-item">
                             <i className="fa fa-user-circle"></i> Sign In
                         </Link>
-                    </div>
-                </nav>
-            </header>
-        );
-    }
+                    )}
+                </div>
+            </nav>
+        </header>
+    );
 }
 
 export default Header;
