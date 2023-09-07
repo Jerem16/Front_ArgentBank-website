@@ -1,17 +1,18 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { selectToken, selectUserData } from "../../redux/selector/selector";
 export function UnauthorizedRedirect(userData, token) {
     const navigate = useNavigate();
 
     useEffect(() => {
         // Vérifier si userData est null ou undefined et rediriger vers la page d'accueil le cas échéant
         if (
-            !userData ||
-            (typeof userData === "object" &&
-                Object.keys(userData).length === 0) ||
-            !token ||
-            (typeof token === "object" && Object.keys(token).length === 0)
+            !selectUserData ||
+            (typeof selectUserData === "object" &&
+                Object.keys(selectUserData).length === null) ||
+            !selectToken ||
+            (typeof selectToken === "object" &&
+                Object.keys(selectToken).length === null)
         ) {
             navigate("/");
         }

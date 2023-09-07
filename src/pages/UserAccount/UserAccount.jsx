@@ -6,8 +6,8 @@ import { UnauthorizedRedirect } from "../../components/UserProfile/unauthorizedR
 import "./userAccount.scss";
 
 function UserAccount() {
-    const userData = useSelector((state) => state.user.userData);
-    const token = useSelector((state) => state.user.token);
+    const userData = useSelector((state) => state.profile.userData);
+    const token = useSelector((state) => state.auth.token);
 
     UnauthorizedRedirect(userData, token);
     return (

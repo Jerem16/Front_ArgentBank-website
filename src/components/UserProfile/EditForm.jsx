@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
+import {
+    selectToken,
+    selectUserName,
+    selectFirstName,
+    selectLastName,
+} from "../../redux/selector/selector";
 import { updateProfile } from "../../redux/actions/authActions";
 
 import "./editForm.scss";
@@ -10,11 +15,11 @@ function EditForm({ onClose }) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const token = useSelector((state) => state.user.token);
+    const token = useSelector(selectToken);
 
-    const userName = useSelector((state) => state.user.userData.userName);
-    const firstName = useSelector((state) => state.user.userData.firstName);
-    const lastName = useSelector((state) => state.user.userData.lastName);
+    const userName = useSelector(selectUserName);
+    const firstName = useSelector(selectFirstName);
+    const lastName = useSelector(selectLastName);
 
     const [newUserName, setnewUserName] = useState("");
 

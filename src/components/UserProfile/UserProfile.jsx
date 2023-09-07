@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
+import { selectUserData } from "../../redux/selector/selector";
 import EditForm from "./EditForm";
 import "./userProfile.scss";
 
 function UserProfile() {
-    const userData = useSelector((state) => state.user.userData);
+    const userData = useSelector(selectUserData);
 
     const [isEditing, setIsEditing] = useState(false);
     const navigate = useNavigate();

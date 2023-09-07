@@ -2,12 +2,14 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import LogoLink from "./LogoLink";
 import { useDispatch, useSelector } from "react-redux";
-import { logOut } from "../../redux/actions/authActions";
+import { logOut } from "../../redux/reducers/authSlice";
+import { profileDelete } from "../../redux/reducers/profileSlice";
+import { selectUserData } from "../../redux/selector/selector";
 
 import "./header.scss";
 
 function Header() {
-    const userData = useSelector((state) => state.user.userData);
+    const userData = useSelector(selectUserData);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -15,6 +17,7 @@ function Header() {
     const handleSignOut = (e) => {
         e.preventDefault();
         dispatch(logOut());
+        dispatch(profileDelete());
         navigate("/");
     };
 
