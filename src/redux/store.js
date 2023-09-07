@@ -1,13 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
-import rootReducer from "./reducers"; // Importez votre réducteur ici
+import rootReducer from "./reducers";
 
-const reduxDevtools =
-    window.__REDUX_DEVTOOLS_EXTENSION__ &&
-    window.__REDUX_DEVTOOLS_EXTENSION__();
-    
+let devToolsValue = true; // Par défaut, devTools = true
+if (/Firefox/.test(navigator.userAgent)) { // Si le navigateur est Firefox
+    devToolsValue = process.env.NODE_ENV !== "production";
+}
+
 const store = configureStore({
     reducer: rootReducer,
-    devTools: true,
+    devTools: devToolsValue,
 });
 
 export default store;

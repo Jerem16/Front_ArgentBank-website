@@ -14,7 +14,7 @@ function LoginForm() {
     const navigate = useNavigate();
     // const authState = useSelector((state) => state.auth);
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         if (!email || !password) {
             // Gérer la validation des champs
@@ -26,8 +26,8 @@ function LoginForm() {
         console.log("Password:", password);
         console.log("Remember Me:", rememberMe);
 
-        await dispatch(loginUser(email, password, navigate));
-        await navigate("/user");
+        dispatch(loginUser(email, password, navigate));
+        navigate("/user");
     };
 
     return (

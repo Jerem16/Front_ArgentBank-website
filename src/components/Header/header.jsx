@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import LogoLink from "./LogoLink";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,7 +7,6 @@ import { logOut } from "../../redux/actions/authActions";
 import "./header.scss";
 
 function Header() {
-    const token = useSelector((state) => state.user.token);
     const userData = useSelector((state) => state.user.userData);
 
     const dispatch = useDispatch();
