@@ -1,4 +1,4 @@
-.accountPage {
+.account {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -10,8 +10,7 @@
     padding: 1.5rem;
     box-sizing: border-box;
     text-align: left;
-    margin: 2rem auto;
-    border-radius: 5px;
+    margin-bottom: 2rem;
 }
 
 .account-amount {
@@ -22,14 +21,13 @@
 
 .account-amount-description {
     margin: 0;
-    font-size: 0.9rem;
 }
 
 .account-title {
     margin: 0;
     padding: 0;
     font-size: 1rem;
-    font-weight: bold;
+    font-weight: normal;
 }
 
 .account-content-wrapper {
@@ -43,14 +41,29 @@
     }
 }
 
+.transaction-button {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-top: 1rem;
+    border-color: #00bc77;
+    background-color: #00bc77;
+    color: #fff;
+}
 
 @media (min-width: 720px) {
-    .accountPage {
+    .account {
         flex-direction: row;
     }
 
     .account-content-wrapper.cta {
         flex: 0;
+    }
+
+    .transaction-button {
+        width: 200px;
     }
 }
 .fa-times {

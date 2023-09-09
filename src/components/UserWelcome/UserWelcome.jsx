@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { selectUserData } from "../../redux/selector/selector";
-import EditForm from "./EditForm";
-import "./userProfile.scss";
+import EditForm from "../UserProfile/EditForm";
+import "./UserWelcome.scss";
 
 function UserProfile() {
     const userData = useSelector(selectUserData);
@@ -11,12 +11,8 @@ function UserProfile() {
     const [isEditing, setIsEditing] = useState(false);
     const navigate = useNavigate();
 
-    // Utilisez la fonction d'effet personnalisée
-
     const handleEditClick = () => {
-        // Mettre à jour l'état d'édition pour ouvrir le formulaire
         setIsEditing(true);
-        // Rediriger l'utilisateur vers la page de profil de l'utilisateur avec le paramètre d'édition
         navigate("/user/profile");
     };
 

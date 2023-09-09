@@ -1,9 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import UserWelcome from "../../components/UserWelcome/UserWelcome";
-import UserAccounts from "../../components/UserAccounts/UserAccounts";
+import UserProfile from "../../components/UserWelcome/UserWelcome";
+import AccountTransactions from "../../components/AccountTransactions/AccountTransactions";
+import Account from "../../components/Account/Account";
 import { UnauthorizedRedirect } from "../../components/unauthorizedRedirect";
-import "./userAccount.scss";
+import "./userTransactions.scss";
 
 function UserAccount() {
     const userData = useSelector((state) => state.profile.userData);
@@ -12,8 +13,8 @@ function UserAccount() {
     UnauthorizedRedirect(userData, token);
     return (
         <main className="main bg-dark">
-            <UserWelcome />
-            <UserAccounts />
+            <Account />
+            <AccountTransactions />
         </main>
     );
 }

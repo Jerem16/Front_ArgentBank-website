@@ -1,17 +1,21 @@
 import axios from "axios";
+
 import {
     loginRequest,
     loginSuccess,
     loginFailure,
 } from "../reducers/authSlice";
 import {
+    profileRequest,
     profileSuccess,
     profileFailure,
     updateProfileRequest,
     updateProfileSuccess,
     updateProfileFailure,
 } from "../reducers/profileSlice";
-export const loginUser = (email, password) => async (dispatch, navigate) => {
+
+
+export const loginUser = (email, password) => async (dispatch) => {
     dispatch(loginRequest());
     try {
         const response = await axios.post(
@@ -32,6 +36,7 @@ export const loginUser = (email, password) => async (dispatch, navigate) => {
 };
 
 export const fetchUserProfile = (token) => async (dispatch) => {
+    dispatch(profileRequest());
     try {
         const response = await axios.post(
             "http://localhost:3001/api/v1/user/profile",

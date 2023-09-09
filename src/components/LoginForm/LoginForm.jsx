@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { loginUser } from "../../redux/actions/authActions";
+import { loginFailure } from "../../redux/reducers/authSlice";
 import { useNavigate } from "react-router-dom";
 
 import "./loginForm.scss";
@@ -13,21 +14,22 @@ function LoginForm() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!email || !password) {
             // Gérer la validation des champs
-            alert("Veuillez remplir tous les champs.");
+            alert("Please complete all fields.");
             return;
         }
 
-        console.log("Email:", email);
-        console.log("Password:", password);
-        console.log("Remember Me:", rememberMe);
-
-        dispatch(loginUser(email, password, navigate));
-        navigate("/user");
+        dispatch(loginUser(email, password))
+            .then(() => {
+                navigate("/user");
+            })
+            .catch((error) => {
+                dispatch(loginFailure(error));
+                alert("Connection error. Please try Again.");
+            });
     };
 
     return (

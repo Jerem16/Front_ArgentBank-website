@@ -8,6 +8,7 @@ import {
     selectLastName,
 } from "../../redux/selector/selector";
 import { updateProfile } from "../../redux/actions/authActions";
+import { profileFailure } from "../../redux/reducers/profileSlice";
 
 import "./editForm.scss";
 
@@ -21,20 +22,31 @@ function EditForm({ onClose }) {
     const firstName = useSelector(selectFirstName);
     const lastName = useSelector(selectLastName);
 
-    const [newUserName, setnewUserName] = useState("");
+    const [newUserName, setNewUserName] = useState("");
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
+        if (newUserName.trim() === "") {
+            alert("User Name cannot be empty.");
+            return;
+        }
         const updatedUserData = { userName: newUserName };
-        await dispatch(updateProfile(token, updatedUserData));
-        await navigate("/user");
-        onClose();
+        dispatch(updateProfile(token, updatedUserData))
+            .then(() => {
+                navigate("/user");
+                onClose();
+            })
+            .catch((error) => {
+                dispatch(profileFailure(error));
+                alert("Connection error. Please try Again.");
+            });
     };
+
     const cancel = (e) => {
         e.preventDefault();
         onClose();
     };
-    console.log("newUserName", newUserName);
+
     return (
         <div>
             <h1>
@@ -48,7 +60,8 @@ function EditForm({ onClose }) {
                         type="text"
                         id="user_Name"
                         placeholder={userName}
-                        onChange={(e) => setnewUserName(e.target.value)}
+                        onChange={(e) => setNewUserName(e.target.value)}
+                        required
                     />
                 </div>
                 <div>
@@ -80,7 +93,7 @@ function EditForm({ onClose }) {
                         Save
                     </button>
                     <button
-                        type="submit"
+                        type="button"
                         className="edit-button"
                         onClick={cancel}
                     >

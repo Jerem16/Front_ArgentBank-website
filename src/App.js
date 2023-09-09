@@ -6,6 +6,7 @@ import Header from "./components/Header/header";
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import UserAccount from "./pages/UserAccount/UserAccount";
+import UserTransactions from "./pages/UserTransactions/UserTransactions";
 import Error from "./pages/Error/Error";
 
 import Footer from "./components/Footer/Footer";
@@ -19,6 +20,10 @@ function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/user" element={<UserAccount />} />
                 <Route path="/user/profile" element={<UserAccount />} />
+                <Route
+                    path="/user/account/:id"
+                    element={<UserTransactions />}
+                />
                 <Route path="*" element={<Error />} />
             </Routes>
             <Footer />

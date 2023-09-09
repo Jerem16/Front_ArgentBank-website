@@ -4,29 +4,40 @@ const profileSlice = createSlice({
     name: "profile",
     initialState: {
         userData: "",
+        isLoading: false,
         isUpdatingProfile: false,
-        updateProfileError: null,
+        error: null,
     },
     reducers: {
+        profileRequest: (state) => {
+            state.isLoading = true;
+            state.error = null;
+        },
         profileSuccess: (state, action) => {
+            state.isLoading = false;
             state.userData = action.payload;
+            state.error = null;
         },
         profileFailure: (state, action) => {
+            state.isLoading = false;
             state.userData = null;
             state.error = action.payload;
         },
         updateProfileRequest: (state) => {
+            state.isLoading = true;
             state.isUpdatingProfile = true;
-            state.updateProfileError = null;
+            state.error = null;
         },
         updateProfileSuccess: (state, action) => {
+            state.isLoading = false;
             state.isUpdatingProfile = false;
             state.userData = action.payload;
-            state.updateProfileError = null;
+            state.error = null;
         },
         updateProfileFailure: (state, action) => {
+            state.isLoading = false;
             state.isUpdatingProfile = false;
-            state.updateProfileError = action.payload;
+            state.error = null;
         },
         profileDelete: (state) => {
             state.userData = null;
@@ -35,6 +46,7 @@ const profileSlice = createSlice({
 });
 
 export const {
+    profileRequest,
     profileSuccess,
     profileFailure,
     updateProfileRequest,
