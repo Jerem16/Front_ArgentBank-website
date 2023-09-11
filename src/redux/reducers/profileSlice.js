@@ -1,57 +1,100 @@
 import { createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
+import { selectProfile } from "../selector/selector";
+import {
+    handleFetchAction,
+    handleResolveAction,
+    handleRejectedAction,
+    handleResetAction,
+} from "./apiHandlers";
+
+export const fetchUserProfile = (token) => async (dispatch, getState) => {
+    const status = selectProfile(getState()).status;
+    if (status === "pending" || status === "updating") {
+        return;
+    }
+
+    dispatch(fetching());
+    try {
+        const response = await axios.post(
+            "http://localhost:3001/api/v1/user/profile",
+            {},
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+        );
+
+        const userData = await response.data.body;
+        dispatch(resolved(userData));
+    } catch (error) {
+        dispatch(profileFailure(error.message));
+    }
+};
+
+export const updateProfile =
+    (token, newUserName, navigate) => async (dispatch, getState) => {
+        const status = selectProfile(getState()).status;
+        if (status === "pending") {
+            return;
+        }
+        dispatch(fetchProfileUpdate());
+        try {
+            const response = await axios.put(
+                "http://localhost:3001/api/v1/user/profile",
+                newUserName,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        "Content-Type": "application/json",
+                    },
+                }
+            );
+
+            const userData = response.data.body;
+            dispatch(resolveProfileUpdate(userData));
+        } catch (error) {
+            dispatch(profileFailure(error.message));
+        }
+    };
 
 const profileSlice = createSlice({
     name: "profile",
     initialState: {
+        status: "void",
         userData: "",
         isLoading: false,
-        isUpdatingProfile: false,
         error: null,
     },
     reducers: {
-        profileRequest: (state) => {
-            state.isLoading = true;
-            state.error = null;
+        fetching: (state) => {
+            handleFetchAction(state);
         },
-        profileSuccess: (state, action) => {
-            state.isLoading = false;
-            state.userData = action.payload;
-            state.error = null;
+        resolved: (state, action) => {
+            handleResolveAction(state, action, { name: "userData" });
         },
         profileFailure: (state, action) => {
-            state.isLoading = false;
-            state.userData = null;
-            state.error = action.payload;
+            handleRejectedAction(state, action, { name: "userData" });
         },
-        updateProfileRequest: (state) => {
-            state.isLoading = true;
-            state.isUpdatingProfile = true;
-            state.error = null;
+        fetchProfileUpdate: (state) => {
+            profileSlice.caseReducers.fetching(state);
         },
-        updateProfileSuccess: (state, action) => {
-            state.isLoading = false;
-            state.isUpdatingProfile = false;
-            state.userData = action.payload;
-            state.error = null;
-        },
-        updateProfileFailure: (state, action) => {
-            state.isLoading = false;
-            state.isUpdatingProfile = false;
-            state.error = null;
+        resolveProfileUpdate: (state, action) => {
+            handleResolveAction(state, action, { name: "userData" });
         },
         profileDelete: (state) => {
-            state.userData = null;
+            handleResetAction(state, { name: "userData" });
         },
     },
 });
 
 export const {
-    profileRequest,
-    profileSuccess,
+    fetching,
+    resolved,
     profileFailure,
-    updateProfileRequest,
-    updateProfileSuccess,
-    updateProfileFailure,
+    fetchProfileUpdate,
+    resolveProfileUpdate,
     profileDelete,
 } = profileSlice.actions;
 

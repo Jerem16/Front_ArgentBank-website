@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { loginUser } from "../../redux/actions/authActions";
+import { loginUser } from "../../redux/reducers/authSlice";
 import { loginFailure } from "../../redux/reducers/authSlice";
 import { useNavigate } from "react-router-dom";
 

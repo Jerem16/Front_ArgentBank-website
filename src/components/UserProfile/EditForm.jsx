@@ -7,8 +7,8 @@ import {
     selectFirstName,
     selectLastName,
 } from "../../redux/selector/selector";
-import { updateProfile } from "../../redux/actions/authActions";
-import { profileFailure } from "../../redux/reducers/profileSlice";
+import { updateProfile } from "../../redux/reducers/profileSlice";
+// import { profileFailure } from "../../redux/reducers/profileSlice";
 
 import "./editForm.scss";
 
@@ -37,7 +37,7 @@ function EditForm({ onClose }) {
                 onClose();
             })
             .catch((error) => {
-                dispatch(profileFailure(error));
+                dispatch(error);
                 alert("Connection error. Please try Again.");
             });
     };
