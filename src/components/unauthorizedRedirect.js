@@ -5,19 +5,15 @@ import { useSelector } from "react-redux";
 
 export function UnauthorizedRedirect() {
     const navigate = useNavigate();
-    const userData = useSelector(selectUserData); // Utilisez le sélecteur ici
-    const token = useSelector(selectToken); // Utilisez le sélecteur ici
+    const userData = useSelector(selectUserData);
 
     useEffect(() => {
-        // Vérifier si userData est null ou undefined et rediriger vers la page d'accueil le cas échéant
-        if (
-            !userData || // Utilisez userData ici
+        const isUserDataEmpty =
+            !userData ||
             (typeof userData === "object" &&
-                Object.keys(userData).length === 0) || // Utilisez userData ici
-            !token || // Utilisez token ici
-            (typeof token === "object" && Object.keys(token).length === 0) // Utilisez token ici
-        ) {
+                Object.keys(userData).length === 0);
+        if (isUserDataEmpty) {
             navigate("/");
         }
-    }, [userData, token, navigate]);
+    }, [userData, navigate]);
 }

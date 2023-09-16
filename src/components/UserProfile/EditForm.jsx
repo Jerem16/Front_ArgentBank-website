@@ -7,7 +7,7 @@ import {
     selectFirstName,
     selectLastName,
 } from "../../redux/selector/selector";
-import { updateProfile } from "../../redux/reducers/profileSlice";
+import { updateProfile } from "../../redux/reducers/authSlice";
 // import { profileFailure } from "../../redux/reducers/profileSlice";
 
 import "./editForm.scss";
@@ -30,8 +30,8 @@ function EditForm({ onClose }) {
             alert("User Name cannot be empty.");
             return;
         }
-        const updatedUserData = { userName: newUserName };
-        dispatch(updateProfile(token, updatedUserData))
+        const updatedUserName = { userName: newUserName };
+        dispatch(updateProfile(token, updatedUserName))
             .then(() => {
                 navigate("/user");
                 onClose();

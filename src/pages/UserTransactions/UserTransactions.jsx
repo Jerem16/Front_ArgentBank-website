@@ -5,12 +5,14 @@ import AccountTransactions from "../../components/AccountTransactions/AccountTra
 import Account from "../../components/Account/Account";
 import { UnauthorizedRedirect } from "../../components/unauthorizedRedirect";
 import "./userTransactions.scss";
+import { selectUserData, selectToken } from "../../redux/selector/selector";
 
 function UserAccount() {
-    const userData = useSelector((state) => state.profile.userData);
-    const token = useSelector((state) => state.auth.token);
+    const userData = useSelector(selectUserData);
 
-    UnauthorizedRedirect(userData, token);
+    if (!userData) {
+        UnauthorizedRedirect(); // Gérez le cas où userData est undefined, par exemple, redirigez l'utilisateur vers la page de connexion.
+    }
     return (
         <main className="main bg-dark">
             <Account />

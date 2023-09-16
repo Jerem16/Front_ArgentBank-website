@@ -1,33 +1,41 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
 import { loginUser } from "../../redux/reducers/authSlice";
-import { loginFailure } from "../../redux/reducers/authSlice";
+import { rejected, getUserProfile } from "../../redux/reducers/authSlice";
 import { useNavigate } from "react-router-dom";
-
+import { selectToken } from "../../redux/selector/selector";
+import { useDispatch, useSelector } from "react-redux";
+import { clearStoredToken } from "../../redux/reducers/token";
 import "./loginForm.scss";
 
 function LoginForm() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [rememberMe, setRememberMe] = useState(false);
-
+    const token = useSelector(selectToken);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleRememberMeChange = () => {
+        if (!rememberMe) {
+            clearStoredToken();
+        }
+        setRememberMe(!rememberMe);
+    };
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (!email || !password) {
-            // Gérer la validation des champs
             alert("Please complete all fields.");
             return;
         }
 
-        dispatch(loginUser(email, password))
+        await dispatch(loginUser(email, password));
+        await dispatch(getUserProfile(token))
             .then(() => {
+                handleRememberMeChange();
                 navigate("/user");
             })
             .catch((error) => {
-                dispatch(loginFailure(error));
+                dispatch(rejected(error));
                 alert("Connection error. Please try Again.");
             });
     };
@@ -60,7 +68,7 @@ function LoginForm() {
                         type="checkbox"
                         id="remember-me"
                         checked={rememberMe}
-                        onChange={() => setRememberMe(!rememberMe)}
+                        onChange={handleRememberMeChange}
                     />
                     <label htmlFor="remember-me">Remember me</label>
                 </div>
