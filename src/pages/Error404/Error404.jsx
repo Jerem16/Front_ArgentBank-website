@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "./error.scss";
 
-function Error() {
+function Error404() {
     return (
         <main className="error-404">
             <div className="borderError">
@@ -19,4 +19,4 @@ function Error() {
     );
 }
 
-export default Error;
+export default Error404;

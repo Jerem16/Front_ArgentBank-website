@@ -1,43 +1,47 @@
-// export const selectStatus = (state) => state.users.status;
+import { createSelector } from "reselect";
 
-// export const selectToken = (state) => state.users.token;
+export const selectIsLoading = createSelector(
+    (state) => state.users.isLoading,
+    (status) => status
+);
 
-// export const selectUserData = (state) => state.users.userData;
-// export const selectUserName = (state) => state.users.userData.userName;
-// export const selectFirstName = (state) => state.users.userData.firstName;
-// export const selectLastName = (state) => state.users.userData.lastName;
+export const selectAuth = createSelector(
+    (state) => state.users.isAuth,
+    (status) => status
+);
 
-// export const selectError = (state) => state.users.error;
-import { createSelector } from 'reselect';
-
-export const selectStatus = (state) => state.users.status;
+export const selectStatus = createSelector(
+    (state) => state.users.status,
+    (status) => status
+);
 
 export const selectToken = createSelector(
-  (state) => state.users.token,
-  (token) => token
+    (state) => state.users.token,
+    (token) => token
 );
 
 export const selectUserData = createSelector(
-  (state) => state.users.userData,
-  (userData) => userData
+    (state) => state.users.userData,
+    (userData) => userData
 );
 
 export const selectUserName = createSelector(
-  (state) => state.users.userData.userName,
-  (userName) => userName
+    (state) => state.users.userData.userName,
+    (userName) => userName
 );
 
 export const selectFirstName = createSelector(
-  (state) => state.users.userData.firstName,
-  (firstName) => firstName
+    (state) => state.users.userData.firstName,
+    (firstName) => firstName
 );
 
 export const selectLastName = createSelector(
-  (state) => state.users.userData.lastName,
-  (lastName) => lastName
+    (state) => state.users.userData.lastName,
+    (lastName) => lastName
 );
 
 export const selectError = createSelector(
-  (state) => state.users.error,
-  (error) => error
+    (state) => state.users.error,
+    (error) => error
 );
+

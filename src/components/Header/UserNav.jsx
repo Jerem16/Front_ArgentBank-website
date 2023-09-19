@@ -1,13 +1,14 @@
 import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { logout, deco } from "../../redux/reducers/authSlice";
+import { getUserProfile, deco } from "../../redux/reducers/authSlice";
 import { clearStoredToken } from "../../redux/reducers/token";
-import { selectUserData } from "../../redux/selector/selector";
+import { selectToken, selectUserData } from "../../redux/selector/selector";
 
 import "./header.scss";
 
 function UserNav() {
+    const token = useSelector(selectToken);
     const userData = useSelector(selectUserData);
 
     const dispatch = useDispatch();
@@ -20,8 +21,10 @@ function UserNav() {
         dispatch(deco());
     };
     // useEffect(() => {
-    //     // dispatch();
-    // }, [navigate]);
+    //     if (token) {
+    //         dispatch(getUserProfile());
+    //     }
+    // }, [dispatch]);
     return (
         <div>
             {userData && userData.userName ? (

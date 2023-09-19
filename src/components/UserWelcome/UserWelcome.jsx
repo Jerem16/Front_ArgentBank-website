@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { selectUserData } from "../../redux/selector/selector";
 import EditForm from "../UserProfile/EditForm";
+import Loader from "../Loader/Loader"; // Import du composant Loader
 import "./UserWelcome.scss";
 
 function UserProfile() {
@@ -29,10 +30,12 @@ function UserProfile() {
                     <h1>
                         Welcome back
                         <br />
-                        {userData && (
+                        {userData ? (
                             <>
                                 {userData.firstName} {userData.lastName} !
                             </>
+                        ) : (
+                            <Loader />
                         )}
                     </h1>
                     <button className="edit-button" onClick={handleEditClick}>
