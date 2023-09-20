@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import accountData from "../../assets/data/accountData.json";
 import "./AccountTransactions.scss";
 import "./collapse.scss";
 
 function AccountTransactions() {
-    // Collapse
     const [isCollapsed, setIsCollapsed] = useState(null);
     const [editableCategory, setEditableCategory] = useState("");
     const [editableNote, setEditableNote] = useState("");
@@ -13,26 +12,18 @@ function AccountTransactions() {
         setIsCollapsed(index === isCollapsed ? null : index);
     };
 
-    // Data
     const { id } = useParams();
     let transactions = [];
     const selectedAccount = accountData.accounts.find(
         (account) => account.id === id
     );
-    // useEffect(() => {
-    //     if (transactions.length > 0 && transactions[0]) {
-    //         setEditableCategory(transactions[0].category);
-    //         setEditableNote(transactions[0].note);
-    //     }
-    // }, [transactions]);
+
     if (selectedAccount) {
         transactions = selectedAccount.transactions;
     } else {
         console.log("Compte introuvable.");
         return <div>Compte introuvable.</div>;
     }
-
-    // Utiliser useEffect pour initialiser editableCategory et editableNote
 
     function formatDate(dateString) {
         const options = { year: "2-digit", month: "2-digit", day: "2-digit" };
@@ -149,9 +140,7 @@ function AccountTransactions() {
                                                 transaction
                                             );
                                         }}
-                                    >
-                                        
-                                    </button>
+                                    ></button>
                                 </div>
                                 <div className="transactions_Collapsed-Details">
                                     <label
@@ -178,9 +167,7 @@ function AccountTransactions() {
                                             e.preventDefault();
                                             handleSetEditableNote(transaction);
                                         }}
-                                    >
-                                        
-                                    </button>
+                                    ></button>
                                 </div>
                             </form>
                         </div>

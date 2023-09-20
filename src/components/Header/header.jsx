@@ -8,12 +8,13 @@ import UserNav from "./UserNav";
 import "./header.scss";
 
 function Header() {
-    const isLoading = useSelector(selectIsLoading);
+    // const isLoading = useSelector(selectIsLoading);
     return (
         <header>
             <nav className="main-nav">
                 <LogoLink />
-                {isLoading ? <Loading /> : <UserNav />}
+                {/* {isLoading ? <Loading /> : } */}
+                <UserNav />
             </nav>
         </header>
     );

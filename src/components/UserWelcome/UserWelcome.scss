@@ -10,3 +10,10 @@
     color: #fff;
     margin-bottom: 2rem;
 }
+.fixed_loading-dots {
+    position: relative;
+    .loading-dots {
+        float: right;
+        position: absolute;
+    }
+}

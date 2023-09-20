@@ -3,13 +3,19 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserProfile, deco } from "../../redux/reducers/authSlice";
 import { clearStoredToken } from "../../redux/reducers/token";
-import { selectToken, selectUserData } from "../../redux/selector/selector";
+import {
+    selectToken,
+    selectUserData,
+    selectIsLoading,
+} from "../../redux/selector/selector"; // Incluez selectIsLoading ici
 
+import LoaderRod from "../Loader/LoaderRod";
+import LogoLink from "./LogoLink";
 import "./header.scss";
 
 function UserNav() {
-    const token = useSelector(selectToken);
     const userData = useSelector(selectUserData);
+    const isLoading = useSelector(selectIsLoading); // Utilisez selectIsLoading ici
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -20,11 +26,7 @@ function UserNav() {
         clearStoredToken();
         dispatch(deco());
     };
-    // useEffect(() => {
-    //     if (token) {
-    //         dispatch(getUserProfile());
-    //     }
-    // }, [dispatch]);
+
     return (
         <div>
             {userData && userData.userName ? (
@@ -38,6 +40,8 @@ function UserNav() {
                         Sign Out
                     </Link>
                 </>
+            ) : isLoading ? (
+                <LoaderRod />
             ) : (
                 <Link to="/login" className="main-nav-item">
                     <i className="fa fa-user-circle"></i> Sign In

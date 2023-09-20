@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./error.scss";
-import Loader from "../../components/Loader/Loader";
 
 function ErrorAuth() {
     const navigate = useNavigate();
 
-
     const [countdown, setCountdown] = useState(4);
-    const [showLoader, setShowLoader] = useState(true); // Utilisez un état pour afficher le Loader
+    // Utilisez un état pour afficher le Loader
 
     const num = 399 + countdown;
 
@@ -21,47 +19,32 @@ function ErrorAuth() {
             setCountdown((prevCountdown) => prevCountdown - 1);
         }, 1250);
 
-        const loaderTimeout = setTimeout(() => {
-            setShowLoader(false);
-        }, 1000);
-
         return () => {
             clearTimeout(timeoutId);
             clearInterval(intervalId);
-            clearTimeout(loaderTimeout);
         };
     }, [navigate, countdown]);
 
     return (
-        <>
-            {showLoader ? (
-                <main className="error-404">
-                    <h1>
-                        <Loader />
-                    </h1>
-                </main>
-            ) : (
-                <main className="error-404">
-                    <div className="borderError">
-                        <h1 className="error-404_h1">{num}</h1>
-                        <p className="error-404_p">
-                            Access denied, this page requires authorization.
-                            <br />
-                            <br />
-                            <span>Authenticate yourself.</span>
-                        </p>
+        <main className="error-404">
+            <div className="borderError">
+                <h1 className="error-404_h1">{num}</h1>
+                <p className="error-404_p">
+                    Access denied, this page requires authorization.
+                    <br />
+                    <br />
+                    <span>Authenticate yourself.</span>
+                </p>
 
-                        <p className="error-404_countdown">
-                            Redirecting in {countdown} seconds...
-                        </p>
+                <p className="error-404_countdown">
+                    Redirecting in {countdown} seconds...
+                </p>
 
-                        <Link to="/login" className="error-404_a">
-                            Return to the homepage
-                        </Link>
-                    </div>
-                </main>
-            )}
-        </>
+                <Link to="/login" className="error-404_a">
+                    Return to the login page
+                </Link>
+            </div>
+        </main>
     );
 }
 
