@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Header from "./components/Header/Header";
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
-import LoginData from "./pages/LoginData/LoginData";
+
 import UserAccount from "./pages/UserAccount/UserAccount";
 import UserTransactions from "./pages/UserTransactions/UserTransactions";
 import Error404 from "./pages/Error404/Error404";
@@ -46,7 +46,6 @@ function App() {
                 <>
                     <Route path="/" element={<Home />} />
                     <Route path="/login" element={<Login />} />
-                    <Route path="/data_user" element={<LoginData />} />
                 </>
 
                 {authenticated ? (

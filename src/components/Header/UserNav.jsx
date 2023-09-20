@@ -1,16 +1,14 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserProfile, deco } from "../../redux/reducers/authSlice";
+import { deco } from "../../redux/reducers/authSlice";
 import { clearStoredToken } from "../../redux/reducers/token";
 import {
-    selectToken,
     selectUserData,
     selectIsLoading,
 } from "../../redux/selector/selector"; // Incluez selectIsLoading ici
 
 import LoaderRod from "../Loader/LoaderRod";
-import LogoLink from "./LogoLink";
 import "./header.scss";
 
 function UserNav() {

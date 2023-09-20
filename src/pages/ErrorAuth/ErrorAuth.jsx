@@ -6,7 +6,6 @@ function ErrorAuth() {
     const navigate = useNavigate();
 
     const [countdown, setCountdown] = useState(4);
-    // Utilisez un état pour afficher le Loader
 
     const num = 399 + countdown;
 

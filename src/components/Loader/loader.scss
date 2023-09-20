@@ -4,63 +4,6 @@
     width: 100%;
     height: 100%;
 }
-// @keyframes rotate {
-//     0%,
-//     100% {
-//     }
-//     0% {
-//         transform: rotate(0deg);
-//         // -webkit-transform: rotate(0deg);
-//         // -moz-transform: rotate(0deg);
-//         // -ms-transform: rotate(0deg);
-//         // -o-transform: rotate(0deg);
-//     }
-//     9% {
-//         transform: rotate(90deg);
-//         //-webkit-transform: rotate(90deg);
-//         //-moz-transform: rotate(90deg);
-//         //-ms-transform: rotate(90deg);
-//         //-o-transform: rotate(90deg);
-//         -webkit-transform: rotate(90deg);
-//         -moz-transform: rotate(90deg);
-//         -ms-transform: rotate(90deg);
-//         -o-transform: rotate(90deg);
-// }
-//     10% {
-//         transform: rotateY(0deg);
-//         // animation-timing-function: cubic-bezier(0.5, 0, 1, 0.5);
-//         /*Pasderotationinitiale*/
-//         // border-left-color: #00bb78;
-//         // border-top-color: #00bb78;
-//         // border-right-color: #00bb78;
-//         -webkit-transform: rotate3d(0, 0, 0, 0deg);
-//         -moz-transform: rotate3d(0, 0, 0, 0deg);
-//         -ms-transform: rotate3d(0, 0, 0, 0deg);
-//         -o-transform: rotate3d(0, 0, 0, 0deg);
-//     }
-//     50% {
-//         // transform: rotateY(180deg);
-//         // // animation-timing-function: cubic-bezier(0, 0.5, 0.5, 1);
-//         // /*Rotationde180degrésautourdel'axeZ*/
-//         // // border-left-color: #005733;
-//         // // border-top-color: #005733;
-//         // // border-right-color: #005733;
-//         // -webkit-transform: rotateY(180deg);
-//         // -moz-transform: rotateY(180deg);
-//         // -ms-transform: rotateY(180deg);
-//         // -o-transform: rotateY(180deg);
-//     }
-//     100% {
-//         transform: rotateY(360deg);
-//         // border-left-color: #00bb78;
-//         // border-top-color: #00bb78;
-//         // border-right-color: #00bb78;
-//         -webkit-transform: rotateY(360deg);
-//         -moz-transform: rotateY(360deg);
-//         -ms-transform: rotateY(360deg);
-//         -o-transform: rotateY(360deg);
-//     }
-// }
 
 @keyframes rotate {
     0% {

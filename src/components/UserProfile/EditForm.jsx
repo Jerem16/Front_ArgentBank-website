@@ -8,7 +8,6 @@ import {
     selectLastName,
 } from "../../redux/selector/selector";
 import { updateProfile } from "../../redux/reducers/authSlice";
-// import { profileFailure } from "../../redux/reducers/profileSlice";
 
 import "./editForm.scss";
 
