@@ -1,3 +1,35 @@
+.collapse-content {
+    position: relative;
+    top: -5px;
+    z-index: 0;
+    display: block;
+    box-sizing: border-box;
+    padding-bottom: 20px;
+
+    &.closed {
+        height: 0;
+        padding: 0;
+        overflow: hidden;
+        margin: 0 0 0 0;
+    }
+    &.opened {
+        height: auto;
+    }
+    &.transitioning {
+        transition: height 0.4s ease-in-out, padding 0.4s ease-in-out;
+    }
+}
+.rotate {
+    transform: rotate(180deg);
+}
+
+.open .rotate {
+    transform: rotate(0);
+}
+.fa-check,
+.fa-pencil {
+    padding-left: 10px;
+}
 .transactions {
     width: 80%;
     margin: 0 auto;
@@ -36,7 +68,6 @@
     display: inline-block;
     max-height: 30px;
 }
-
 
 .transaction-icone {
     width: 20px;

@@ -1,15 +1,19 @@
+// AccountTransactions.jsx
 import React, { useState } from "react";
+import TransactionDetails from "./TransactionDetails";
 import { useParams } from "react-router-dom";
 import accountData from "../../assets/data/accountData.json";
 import "./AccountTransactions.scss";
-import "./collapse.scss";
 
 function AccountTransactions() {
-    const [isCollapsed, setIsCollapsed] = useState(null);
+    const [openTransactionID, setOpenTransactionID] = useState(null);
     const [editableCategory, setEditableCategory] = useState("");
     const [editableNote, setEditableNote] = useState("");
-    const handleClick = (index) => {
-        setIsCollapsed(index === isCollapsed ? null : index);
+
+    const handleTransactionClick = (transactionID) => {
+        setOpenTransactionID((prevID) =>
+            prevID === transactionID ? null : transactionID
+        );
     };
 
     const { id } = useParams();
@@ -30,9 +34,24 @@ function AccountTransactions() {
         return new Date(dateString).toLocaleDateString(undefined, options);
     }
 
+    const handleSaveChanges = (newCategory, newNote, transactionID) => {
+        const updatedData = { ...accountData };
+
+        for (const account of updatedData.accounts) {
+            for (const transaction of account.transactions) {
+                if (transaction.transactionID === transactionID) {
+                    transaction.category = newCategory;
+                    transaction.note = newNote;
+                    break;
+                }
+            }
+        }
+    };
+
     function handleSetEditableNote(selectedTransaction) {
         setEditableNote(selectedTransaction.note);
     }
+
     function handleSetEditableCategory(selectedTransaction) {
         setEditableCategory(selectedTransaction.category);
     }
@@ -50,7 +69,10 @@ function AccountTransactions() {
                 </div>
                 <div>
                     {transactions.map((transaction, index) => (
-                        <div className="transactionsColumnDetail" key={index}>
+                        <div
+                            className="transactionsColumnDetail"
+                            key={transaction.transactionID}
+                        >
                             <span className="transactions-details">
                                 <p className="transaction-value">
                                     {formatDate(transaction.date)}
@@ -66,7 +88,11 @@ function AccountTransactions() {
                                 </p>
                                 <p
                                     className="transaction-icone"
-                                    onClick={() => handleClick(index)}
+                                    onClick={() =>
+                                        handleTransactionClick(
+                                            transaction.transactionID
+                                        )
+                                    }
                                 >
                                     <i
                                         className={`fa fa-chevron-up`}
@@ -74,7 +100,8 @@ function AccountTransactions() {
                                             color: "lightgrey",
                                             transformOrigin: "center",
                                             transform: `rotate(${
-                                                index === isCollapsed
+                                                transaction.transactionID ===
+                                                openTransactionID
                                                     ? "-180deg"
                                                     : "0deg"
                                             })`,
@@ -83,105 +110,26 @@ function AccountTransactions() {
                                     ></i>
                                 </p>
                             </span>
-                            <form
-                                className={`collapse-content ${
-                                    index === isCollapsed ? "opened" : "closed"
-                                }`}
-                                style={{
-                                    maxHeight:
-                                        index === isCollapsed ? "1000px" : "0",
-                                    transform: `scaleY(${
-                                        index === isCollapsed ? 1 : 0
-                                    })`,
-                                    transformOrigin: "top",
-                                    transition: "all 0.3s ease-in-out",
-                                }}
-                            >
-                                <div className="transactions_Collapsed-Details">
-                                    <label
-                                        htmlFor="transaction_Type"
-                                        className="transaction-value"
-                                    >
-                                        Transaction type
-                                    </label>
-                                    <input
-                                        className="transaction-input"
-                                        type="text"
-                                        id="transaction_Type"
-                                        value={transaction.type}
-                                        readOnly
-                                        disabled
-                                    />
-                                </div>
-                                <div className="transactions_Collapsed-Details">
-                                    <label
-                                        htmlFor="Category"
-                                        className="transaction-value"
-                                    >
-                                        Category
-                                    </label>
-                                    <div className="transaction-input">
-                                        <input
-                                            className="transaction-input"
-                                            type="text"
-                                            id="Category"
-                                            value={
-                                                editableCategory !== ""
-                                                    ? editableCategory
-                                                    : transaction.category
-                                            }
-                                            onChange={(e) =>
-                                                setEditableCategory(
-                                                    e.target.value
-                                                )
-                                            }
-                                        />
-                                        <i
-                                            onClick={(e) => {
-                                                e.preventDefault();
-                                                handleSetEditableCategory(
-                                                    transaction
-                                                );
-                                            }}
-                                            className="fa fa-pencil"
-                                            aria-hidden="true"
-                                        ></i>
-                                    </div>
-                                </div>
-                                <div className="transactions_Collapsed-Details">
-                                    <label
-                                        htmlFor="Note"
-                                        className="transaction-value"
-                                    >
-                                        Note
-                                    </label>
-                                    <div className="transaction-input">
-                                        <input
-                                            className="transaction-input"
-                                            type="text"
-                                            id="Note"
-                                            value={
-                                                editableNote !== ""
-                                                    ? editableNote
-                                                    : transaction.note
-                                            }
-                                            onChange={(e) =>
-                                                setEditableNote(e.target.value)
-                                            }
-                                        />
-                                        <i
-                                            onClick={(e) => {
-                                                e.preventDefault();
-                                                handleSetEditableNote(
-                                                    transaction
-                                                );
-                                            }}
-                                            className="fa fa-pencil"
-                                            aria-hidden="true"
-                                        ></i>
-                                    </div>
-                                </div>
-                            </form>
+                            <TransactionDetails
+                                key={transaction.transactionID}
+                                transaction={transaction}
+                                handleSaveChanges={handleSaveChanges}
+                                editableCategory={editableCategory}
+                                editableNote={editableNote}
+                                handleSetEditableCategory={
+                                    handleSetEditableCategory
+                                }
+                                handleSetEditableNote={handleSetEditableNote}
+                                isOpen={
+                                    transaction.transactionID ===
+                                    openTransactionID
+                                }
+                                onClick={() =>
+                                    handleTransactionClick(
+                                        transaction.transactionID
+                                    )
+                                }
+                            />
                         </div>
                     ))}
                 </div>
