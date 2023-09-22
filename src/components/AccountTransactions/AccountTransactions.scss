@@ -36,25 +36,15 @@
     display: inline-block;
     max-height: 30px;
 }
-.transactionsDetail {
-    // background-color: #007b55;
-    // border-radius: 5px;
-    // max-height: auto;
-}
+
 
 .transaction-icone {
     width: 20px;
 }
 
 .transactionsColumnDetail {
-    // margin-bottom: 20px;
-    // width: 100%;
-    // padding: 0 20px;
     display: flex;
     flex-flow: column;
-    // justify-content: space-between;
-    // align-items: center;
-    // box-sizing: border-box;
     background-color: #007b55;
     border-radius: 5px;
     max-height: auto;
@@ -82,4 +72,72 @@
     max-height: 30px;
     background: transparent;
     font-size: 1rem;
+}
+
+@media (max-width: 720px) {
+    .transactions {
+        width: 90%;
+        margin: 0 auto;
+        box-sizing: border-box;
+        text-align: left;
+        margin-bottom: 2rem;
+    }
+    .transaction-input,
+    .transactions-labels,
+    .transactions-details {
+        padding: 0;
+        display: inline-flex;
+        flex-flow: row;
+        justify-content: space-between;
+        margin: 0;
+
+        .transaction-label {
+            color: white;
+            font-weight: normal;
+            margin: 0;
+            min-width: 20%;
+        }
+        .transaction-icone {
+            width: 20px;
+            padding: 0 5px 0 0;
+        }
+
+        .transaction-label,
+        .transaction-value {
+            padding: 0 0 0 5px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+    .transactions_Collapsed-Details {
+        width: 100%;
+        padding: 10px 5px 5px 5px;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+        align-items: center;
+        box-sizing: border-box;
+        font-size: 0.8rem;
+
+        label {
+            display: block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 20%;
+            flex: 1;
+        }
+    }
+    .transaction-input {
+        font-size: 0.8rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        i {
+            float: right;
+            padding-right: 5px;
+        }
+    }
 }

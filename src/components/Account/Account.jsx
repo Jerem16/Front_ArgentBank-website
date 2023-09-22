@@ -34,16 +34,20 @@ function Account() {
                     <h2 className="sr-only">Accounts</h2>
                     <div className="account-content-wrapper">
                         <h3 className="account-title">{account.title}</h3>
-                        <p className="account-amount">{account.amount}</p>
+                        <p className="account-amount">
+                            {account.amount}{" "}
+                            <Link to={`/user`}>
+                                <i
+                                    className="fa fa-times"
+                                    aria-hidden="true"
+                                ></i>
+                            </Link>
+                        </p>
                         <p className="account-amount-description">
                             {account.description}
                         </p>
                     </div>
-                    <div className="account-content-wrapper cta">
-                        <Link to={`/user`}>
-                            <i className="fa fa-times" aria-hidden="true"></i>
-                        </Link>
-                    </div>
+                    <div className="account-content-wrapper cta"></div>
                 </section>
             ) : (
                 <></>

@@ -120,27 +120,33 @@ function AccountTransactions() {
                                     >
                                         Category
                                     </label>
-                                    <input
-                                        className="transaction-input"
-                                        type="text"
-                                        id="Category"
-                                        value={
-                                            editableCategory !== ""
-                                                ? editableCategory
-                                                : transaction.category
-                                        }
-                                        onChange={(e) =>
-                                            setEditableCategory(e.target.value)
-                                        }
-                                    />
-                                    <button
-                                        onClick={(e) => {
-                                            e.preventDefault();
-                                            handleSetEditableCategory(
-                                                transaction
-                                            );
-                                        }}
-                                    ></button>
+                                    <div className="transaction-input">
+                                        <input
+                                            className="transaction-input"
+                                            type="text"
+                                            id="Category"
+                                            value={
+                                                editableCategory !== ""
+                                                    ? editableCategory
+                                                    : transaction.category
+                                            }
+                                            onChange={(e) =>
+                                                setEditableCategory(
+                                                    e.target.value
+                                                )
+                                            }
+                                        />
+                                        <i
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                handleSetEditableCategory(
+                                                    transaction
+                                                );
+                                            }}
+                                            className="fa fa-pencil"
+                                            aria-hidden="true"
+                                        ></i>
+                                    </div>
                                 </div>
                                 <div className="transactions_Collapsed-Details">
                                     <label
@@ -149,25 +155,31 @@ function AccountTransactions() {
                                     >
                                         Note
                                     </label>
-                                    <input
-                                        className="transaction-input"
-                                        type="text"
-                                        id="Note"
-                                        value={
-                                            editableNote !== ""
-                                                ? editableNote
-                                                : transaction.note
-                                        }
-                                        onChange={(e) =>
-                                            setEditableNote(e.target.value)
-                                        }
-                                    />
-                                    <button
-                                        onClick={(e) => {
-                                            e.preventDefault();
-                                            handleSetEditableNote(transaction);
-                                        }}
-                                    ></button>
+                                    <div className="transaction-input">
+                                        <input
+                                            className="transaction-input"
+                                            type="text"
+                                            id="Note"
+                                            value={
+                                                editableNote !== ""
+                                                    ? editableNote
+                                                    : transaction.note
+                                            }
+                                            onChange={(e) =>
+                                                setEditableNote(e.target.value)
+                                            }
+                                        />
+                                        <i
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                handleSetEditableNote(
+                                                    transaction
+                                                );
+                                            }}
+                                            className="fa fa-pencil"
+                                            aria-hidden="true"
+                                        ></i>
+                                    </div>
                                 </div>
                             </form>
                         </div>

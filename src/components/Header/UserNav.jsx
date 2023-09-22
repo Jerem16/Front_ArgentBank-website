@@ -3,10 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { deco } from "../../redux/reducers/authSlice";
 import { clearStoredToken } from "../../redux/reducers/token";
-import {
-    selectUserData,
-    selectIsLoading,
-} from "../../redux/selector/selector"; // Incluez selectIsLoading ici
+import { selectUserData, selectIsLoading } from "../../redux/selector/selector"; // Incluez selectIsLoading ici
 
 import LoaderRod from "../Loader/LoaderRod";
 import "./header.scss";
@@ -26,7 +23,7 @@ function UserNav() {
     };
 
     return (
-        <div>
+        <div className="main-nav-col">
             {userData && userData.userName ? (
                 <>
                     <Link to="/user" className="main-nav-item">

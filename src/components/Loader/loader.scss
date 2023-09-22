@@ -107,11 +107,24 @@
     flex-flow: row;
     justify-content: flex-end;
 }
+@media (max-width: 920px) {
+    .t {
+        position: relative;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        width: 164.8px;
+        height: 30.4px;
+        display: flex;
+        flex-flow: row;
+        justify-content: center;
+    }
+}
 .loader {
     display: block;
     // min-width: 40px;
     width: 102px;
-    // max-width: 100px;
+    //max-width: 100px;
     max-height: 30px;
     background-repeat: no-repeat;
     background-image: linear-gradient(#00bb78 50px, transparent 0),
@@ -124,67 +137,10 @@
         linear-gradient(#007b55 50px, transparent 0);
     background-position: 0px center, 15px center, 30px center, 45px center,
         60px center, 75px center, 90px center, 105px center, 120px center;
-    -webkit-animation: rikSpikeRoll 2s linear infinite;
-    animation: rikSpikeRoll 2s linear infinite;
+    -webkit-animation: rikSpikeRoll 1s linear infinite;
+    animation: rikSpikeRoll 1s linear infinite;
 }
 
-// @keyframes rikSpikeRoll {
-//     0% {
-//         background-size: 10px 3px;
-//     }
-//     8% {
-//         background-size: 3px 3px, 5px 3px, 7px 10px, 9px 30px, 10px 50px,
-//             9px 30px, 7px 10px, 5px 3px, 3px 3px;
-//     }
-//     16% {
-//         background-size: 5px 3px, 7px 10px, 9px 30px, 10px 50px, 9px 30px,
-//             7px 10px, 5px 3px, 3px 3px, 3px 3px;
-//     }
-//     24% {
-//         background-size: 7px 10px, 9px 30px, 10px 50px, 9px 30px, 7px 10px,
-//             5px 3px, 3px 3px, 3px 3px, 5px 3px;
-//     }
-//     32% {
-//         background-size: 9px 30px, 10px 50px, 9px 30px, 7px 10px, 5px 3px,
-//             3px 3px, 3px 3px, 5px 3px, 7px 10px;
-//     }
-//     40% {
-//         background-size: 10px 50px, 9px 30px, 7px 10px, 5px 3px, 3px 3px,
-//             3px 3px, 5px 3px, 7px 10px, 9px 30px;
-//     }
-//     48% {
-//         background-size: 9px 30px, 7px 10px, 5px 3px, 3px 3px, 3px 3px, 5px 3px,
-//             7px 10px, 9px 30px, 10px 50px;
-//     }
-//     56% {
-//         background-size: 7px 10px, 5px 3px, 3px 3px, 3px 3px, 5px 3px, 7px 10px,
-//             9px 30px, 10px 50px, 9px 30px;
-//     }
-//     64% {
-//         background-size: 5px 3px, 3px 3px, 3px 3px, 5px 3px, 7px 10px, 9px 30px,
-//             10px 50px, 9px 30px, 7px 10px;
-//     }
-//     72% {
-//         background-size: 3px 3px, 3px 3px, 5px 3px, 7px 10px, 9px 30px,
-//             10px 50px, 9px 30px, 7px 10px, 5px 3px;
-//     }
-//     80% {
-//         background-size: 3px 3px, 5px 3px, 7px 10px, 9px 30px, 10px 50px,
-//             9px 30px, 7px 10px, 5px 3px, 3px 3px;
-//     }
-//     88% {
-//         background-size: 5px 3px, 7px 10px, 9px 30px, 10px 50px, 9px 30px,
-//             7px 10px, 5px 3px, 3px 3px, 3px 3px;
-//     }
-//     96% {
-//         background-size: 7px 10px, 9px 30px, 10px 50px, 9px 30px, 7px 10px,
-//             5px 3px, 3px 3px, 3px 3px, 5px 3px;
-//     }
-//     100% {
-//         background-size: 9px 30px, 10px 50px, 9px 30px, 7px 10px, 5px 3px,
-//             3px 3px, 3px 3px, 5px 3px, 7px 10px;
-//     }
-// }
 $a1: 2px 2px;
 $a2: 4px 3px;
 $a3: 6px 10px;
